@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScholarTrack | Scholarship Discovery & Application Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#16213E;
+    --navy-deep:#0D1530;
+    --gold:#D4A537;
+    --gold-light:#F0D78C;
+    --cream:#F7F4EC;
+    --ink:#26282E;
+    --green:#2E7D4F;
+    --line:#E4DFD1;
+    --white:#FFFFFF;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    color:var(--navy-deep);
+    margin:0 0 .5em 0;
+  }
+  a{ text-decoration:none; color:inherit; }
+  img{max-width:100%;}
+
+  /* ===== HEADER ===== */
+  header.site-header{
+    background:var(--navy-deep);
+    color:var(--white);
+    padding:18px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    border-bottom:3px solid var(--gold);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .brand .logo{
+    width:50px;height:50px;
+    border-radius:10px;
+    background:linear-gradient(160deg,var(--gold),var(--gold-light));
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+    color:var(--navy-deep);
+    font-weight:700;
+  }
+  .brand-text h1{
+    color:var(--white);
+    font-size:1.5rem;
+    margin:0;
+    letter-spacing:.3px;
+  }
+  .brand-text p{
+    margin:2px 0 0 0;
+    font-size:.8rem;
+    color:var(--gold-light);
+    letter-spacing:.5px;
+  }
+  .student-id{
+    text-align:right;
+    font-size:.82rem;
+    color:#D8D9E2;
+  }
+  .student-id strong{
+    display:block;
+    color:var(--white);
+    font-size:.95rem;
+  }
+
+  /* ===== NAV ===== */
+  nav.main-nav{
+    background:var(--navy);
+    padding:0 6%;
+  }
+  nav.main-nav ul{
+    list-style:none;
+    margin:0;padding:0;
+    display:flex;
+    flex-wrap:wrap;
+  }
+  nav.main-nav li a{
+    display:block;
+    padding:14px 18px;
+    color:#EDEDF2;
+    font-size:.92rem;
+    font-weight:500;
+    border-right:1px solid rgba(255,255,255,.08);
+    transition:background .2s;
+  }
+  nav.main-nav li a:hover{
+    background:var(--gold);
+    color:var(--navy-deep);
+  }
+  nav.main-nav li:last-child a{
+    color:var(--gold-light);
+  }
+
+  section{ padding:56px 6%; }
+
+  /* ===== WELCOME ===== */
+  .welcome{
+    background:var(--white);
+    border-bottom:1px solid var(--line);
+  }
+  .welcome .eyebrow{
+    color:var(--gold);
+    font-weight:700;
+    letter-spacing:1.5px;
+    font-size:.78rem;
+    text-transform:uppercase;
+  }
+  .welcome h2{ font-size:2.1rem; max-width:760px; }
+  .welcome p.lead{
+    max-width:680px;
+    color:#4A4C55;
+    font-size:1.02rem;
+  }
+  .vm-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin-top:30px;
+  }
+  .vm-card{
+    background:var(--cream);
+    border-left:4px solid var(--gold);
+    padding:20px 24px;
+    border-radius:4px;
+  }
+  .vm-card h3{ font-size:1.05rem; margin-bottom:8px; }
+  .vm-card p{ margin:0; color:#4A4C55; font-size:.94rem; }
+
+  /* ===== STATS ===== */
+  .stats-section{ background:var(--navy-deep); }
+  .stats-section h2{ color:var(--white); }
+  .stats-section .section-sub{ color:#B9BCCB; margin-bottom:30px; }
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .stat-card{
+    background:var(--navy);
+    border:1px solid rgba(212,165,55,.25);
+    border-radius:8px;
+    padding:22px 20px;
+  }
+  .stat-card .stat-label{
+    color:#B9BCCB;
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+  }
+  .stat-card .stat-value{
+    font-family:'Fraunces',serif;
+    font-size:2rem;
+    color:var(--gold-light);
+    margin-top:6px;
+  }
+  .stat-card .stat-delta{
+    font-size:.78rem;
+    color:#8FD3A8;
+    margin-top:4px;
+  }
+
+  /* ===== FEATURES / SERVICES ===== */
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    background:var(--white);
+  }
+  .two-col .col h2{ font-size:1.5rem; }
+  .two-col .col .section-sub{ color:#6B6D77; margin-bottom:18px; font-size:.92rem; }
+  ul.feature-list, ol.service-list{
+    padding-left:22px;
+    margin:0;
+  }
+  ul.feature-list li, ol.service-list li{
+    margin-bottom:12px;
+    padding-left:6px;
+    color:#33353D;
+  }
+  ul.feature-list li::marker{ color:var(--gold); font-size:1.1rem; }
+  ol.service-list li::marker{ color:var(--navy); font-weight:700; }
+
+  /* ===== MARQUEE ===== */
+  .updates-section{
+    background:var(--gold-light);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:18px 6%;
+  }
+  .updates-section .updates-label{
+    display:inline-block;
+    background:var(--navy-deep);
+    color:var(--gold-light);
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+    padding:6px 14px;
+    border-radius:4px;
+    margin-bottom:10px;
+  }
+  marquee{
+    font-size:.98rem;
+    color:var(--navy-deep);
+    font-weight:500;
+  }
+
+  /* ===== FORM ===== */
+  .form-section{ background:var(--cream); }
+  .form-wrap{
+    max-width:780px;
+    margin:0 auto;
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:36px 40px;
+  }
+  .form-section h2{ text-align:center; }
+  .form-section .section-sub{ text-align:center; color:#6B6D77; margin-bottom:28px; }
+  form .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-bottom:18px;
+  }
+  form .form-row.full{ grid-template-columns:1fr; }
+  form label{
+    display:block;
+    font-size:.85rem;
+    font-weight:600;
+    margin-bottom:6px;
+    color:var(--navy-deep);
+  }
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="tel"],
+  form input[type="password"],
+  form input[type="date"],
+  form textarea{
+    width:100%;
+    padding:11px 12px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    font-family:'Inter',sans-serif;
+    font-size:.92rem;
+    background:var(--cream);
+  }
+  form textarea{ resize:vertical; min-height:80px; }
+  form .gender-options{
+    display:flex;
+    gap:18px;
+    margin-top:6px;
+  }
+  form .gender-options label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-weight:500;
+    font-size:.9rem;
+  }
+  .form-actions{
+    display:flex;
+    gap:14px;
+    margin-top:10px;
+  }
+  .btn{
+    padding:12px 28px;
+    border-radius:6px;
+    border:none;
+    font-weight:700;
+    font-size:.92rem;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+  .btn-submit{ background:var(--navy-deep); color:var(--white); }
+  .btn-submit:hover{ background:var(--navy); }
+  .btn-reset{ background:transparent; color:var(--navy-deep); border:1px solid var(--navy-deep); }
+  .btn-reset:hover{ background:var(--cream); }
+
+  /* ===== TABLE ===== */
+  .modules-section{ background:var(--white); }
+  table.modules-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+  }
+  table.modules-table th{
+    background:var(--navy-deep);
+    color:var(--white);
+    text-align:left;
+    padding:13px 16px;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+  }
+  table.modules-table td{
+    padding:13px 16px;
+    border-bottom:1px solid var(--line);
+    font-size:.93rem;
+    color:#33353D;
+  }
+  table.modules-table tr:nth-child(even){ background:var(--cream); }
+  table.modules-table td:first-child{ font-weight:700; color:var(--navy); }
+
+  /* ===== CONTACT ===== */
+  .contact-section{ background:var(--navy-deep); color:var(--white); }
+  .contact-section h2{ color:var(--white); }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin-top:24px;
+  }
+  .contact-card{
+    background:var(--navy);
+    border-radius:8px;
+    padding:20px;
+    border:1px solid rgba(212,165,55,.2);
+  }
+  .contact-card .c-label{
+    color:var(--gold-light);
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:.6px;
+    margin-bottom:6px;
+  }
+  .contact-card .c-value{ color:#E3E4EC; font-size:.92rem; }
+  .social-links{
+    display:flex;
+    gap:14px;
+    margin-top:8px;
+  }
+  .social-links a{
+    color:var(--gold-light);
+    font-size:.88rem;
+    border:1px solid rgba(212,165,55,.4);
+    padding:6px 12px;
+    border-radius:20px;
+  }
+  .social-links a:hover{ background:var(--gold); color:var(--navy-deep); }
+
+  /* ===== FOOTER ===== */
+  footer.site-footer{
+    background:var(--navy-deep);
+    border-top:1px solid rgba(212,165,55,.3);
+    color:#B9BCCB;
+    text-align:center;
+    padding:20px 6%;
+    font-size:.85rem;
+  }
+  footer.site-footer strong{ color:var(--gold-light); }
+
+  @media (max-width:900px){
+    .vm-grid, .two-col, .form-row, .contact-grid{ grid-template-columns:1fr; }
+    .stats-grid{ grid-template-columns:repeat(2,1fr); }
+    .student-id{ text-align:left; margin-top:8px; }
+  }
+  @media (max-width:600px){
+    .stats-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="brand">
+    <div class="logo">🎓</div>
+    <div class="brand-text">
+      <h1>ScholarTrack</h1>
+      <p>Discover. Apply. Achieve.</p>
+    </div>
+  </div>
+  <div class="student-id">
+    <strong>Ghayathri SV</strong>
+    Reg. No: 2303717620522016
+  </div>
+</header>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="main-nav">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reports">Reports</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#logout">Logout</a></li>
+  </ul>
+</nav>
+
+<!-- ============ WELCOME SECTION ============ -->
+<section class="welcome" id="home">
+  <span class="eyebrow">Welcome to ScholarTrack</span>
+  <h2>Find the right scholarship. Track every application. Never miss a deadline.</h2>
+  <p class="lead">
+    ScholarTrack is a centralized platform that helps students discover scholarships
+    they are eligible for, manage their applications from one dashboard, and track
+    status updates in real time — replacing scattered spreadsheets, bookmark folders,
+    and missed deadlines with a single, organized workflow.
+  </p>
+
+  <div class="vm-grid">
+    <div class="vm-card">
+      <h3>Our Vision</h3>
+      <p>To ensure that no deserving student misses an educational opportunity simply
+      because they didn't know it existed or missed the application window.</p>
+    </div>
+    <div class="vm-card">
+      <h3>Our Mission</h3>
+      <p>To build an accessible, transparent, and intelligent scholarship discovery
+      and tracking system that connects students with funding opportunities matched
+      to their academic profile and eligibility.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD STATISTICS ============ -->
+<section class="stats-section" id="dashboard">
+  <h2>Dashboard Overview</h2>
+  <p class="section-sub">A snapshot of platform activity as of today</p>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Total Users</div>
+      <div class="stat-value">18,420</div>
+      <div class="stat-delta">▲ 6.2% this month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Active Users</div>
+      <div class="stat-value">9,875</div>
+      <div class="stat-delta">▲ 3.4% this week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Revenue</div>
+      <div class="stat-value">₹4.8L</div>
+      <div class="stat-delta">▲ 11% this quarter</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Transactions</div>
+      <div class="stat-value">2,310</div>
+      <div class="stat-delta">▲ 8% this month</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Notifications</div>
+      <div class="stat-value">132</div>
+      <div class="stat-delta">14 unread</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Pending Tasks</div>
+      <div class="stat-value">27</div>
+      <div class="stat-delta">5 due today</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES & SERVICES ============ -->
+<section class="two-col" id="services">
+  <div class="col">
+    <h2>Features</h2>
+    <p class="section-sub">What you can do on ScholarTrack</p>
+    <ul class="feature-list">
+      <li>AI-based scholarship matching based on academic profile and income criteria</li>
+      <li>Real-time application status tracking for every scholarship applied to</li>
+      <li>Deadline reminders via email and in-app notifications</li>
+      <li>Secure document vault for certificates, mark sheets, and income proofs</li>
+      <li>Eligibility checker before starting any application</li>
+      <li>Personalized dashboard showing saved, applied, and awarded scholarships</li>
+    </ul>
+  </div>
+  <div class="col">
+    <h2>Services</h2>
+    <p class="section-sub">How ScholarTrack supports your journey</p>
+    <ol class="service-list">
+      <li>Scholarship Discovery — curated listings from government and private bodies</li>
+      <li>Application Assistance — guided, step-by-step application filling</li>
+      <li>Document Verification — automated checks before final submission</li>
+      <li>Deadline Tracking — calendar sync for every active application</li>
+      <li>Notification Alerts — SMS and email updates on status changes</li>
+      <li>Application Status Updates — live tracking from submission to award</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ LATEST UPDATES (MARQUEE) ============ -->
+<section class="updates-section">
+  <span class="updates-label">Latest Updates</span>
+  <marquee behavior="scroll" direction="left" scrollamount="5">
+    📢 National Merit Scholarship 2026 applications now open — closes 15th July &nbsp;|&nbsp;
+    🎓 Over 3,200 students received awards through ScholarTrack this year &nbsp;|&nbsp;
+    🆕 New eligibility checker added for state-level scholarships &nbsp;|&nbsp;
+    ⏰ Reminder: Post-Matric Scholarship deadline extended to 30th June
+  </marquee>
+</section>
+
+<!-- ============ REGISTRATION FORM ============ -->
+<section class="form-section" id="reports">
+  <h2>Student Registration</h2>
+  <p class="section-sub">Create your ScholarTrack account to start applying</p>
+  <div class="form-wrap">
+    <form>
+      <div class="form-row">
+        <div>
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Enter your full name">
+        </div>
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Create a password">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label>Gender</label>
+          <div class="gender-options">
+            <label><input type="radio" name="gender" value="female"> Female</label>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="other"> Other</label>
+          </div>
+        </div>
+        <div>
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob">
+        </div>
+      </div>
+
+      <div class="form-row full">
+        <div>
+          <label for="address">Address</label>
+          <textarea id="address" name="address" placeholder="House no, street, city, state, PIN code"></textarea>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-submit">Submit</button>
+        <button type="reset" class="btn btn-reset">Reset</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ APPLICATION MODULES TABLE ============ -->
+<section class="modules-section" id="about">
+  <h2>Application Modules</h2>
+  <p class="section-sub">Core modules that make up the ScholarTrack platform</p>
+  <table class="modules-table">
+    <thead>
+      <tr>
+        <th>Module ID</th>
+        <th>Module Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>MOD-01</td>
+        <td>Scholarship Search</td>
+        <td>Browse and filter scholarships by category, state, income criteria, and academic level.</td>
+      </tr>
+      <tr>
+        <td>MOD-02</td>
+        <td>Application Tracker</td>
+        <td>Track the live status of every submitted application from one unified dashboard.</td>
+      </tr>
+      <tr>
+        <td>MOD-03</td>
+        <td>Document Manager</td>
+        <td>Upload, store, and reuse certificates and proofs across multiple applications.</td>
+      </tr>
+      <tr>
+        <td>MOD-04</td>
+        <td>Deadline Alerts</td>
+        <td>Automated reminders sent before scholarship submission windows close.</td>
+      </tr>
+      <tr>
+        <td>MOD-05</td>
+        <td>Eligibility Checker</td>
+        <td>Quickly verify eligibility for a scholarship before starting the application.</td>
+      </tr>
+      <tr>
+        <td>MOD-06</td>
+        <td>Notification Center</td>
+        <td>Centralized hub for all status updates, alerts, and announcements.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ CONTACT INFORMATION ============ -->
+<section class="contact-section" id="contact">
+  <h2>Contact Information</h2>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="c-label">Email</div>
+      <div class="c-value">support@scholartrack.app</div>
+    </div>
+    <div class="contact-card">
+      <div class="c-label">Phone</div>
+      <div class="c-value">+91 98765 43210</div>
+    </div>
+    <div class="contact-card">
+      <div class="c-label">Address</div>
+      <div class="c-value">Department of IT, Tiruppur, Tamil Nadu, India</div>
+    </div>
+    <div class="contact-card">
+      <div class="c-label">Follow Us</div>
+      <div class="social-links">
+        <a href="#" id="logout">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  &copy; 2026 <strong>ScholarTrack</strong> — Scholarship Discovery &amp; Application Tracker.
+  Designed by <strong>Ghayathri SV</strong>.
+</footer>
+
+</body>
+</html>
