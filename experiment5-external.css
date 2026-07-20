@@ -1,0 +1,253 @@
+/* ============================================================
+   EXPERIMENT 5 — EXTERNAL STYLESHEET
+   File: experiment5-external.css
+   Linked in <head> with:
+   <link rel="stylesheet" href="experiment5-external.css">
+
+   This file demonstrates an EXTERNAL stylesheet (separate .css
+   file, loaded via <link>) plus advanced CSS concepts:
+   CSS Grid, CSS Pseudo-elements, CSS Transformations,
+   CSS Positioning, Image Hover Effects, CSS Progress Bar,
+   and CSS Tooltips.
+   ============================================================ */
+
+/* ---------- Section wrapper ---------- */
+.exp5-section{
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.exp5-section .section-sub{color:var(--subtext);margin-bottom:30px;}
+.exp5-block{margin-bottom:46px;}
+.exp5-block h3{
+  font-size:1.15rem;margin-bottom:6px;
+  display:flex;align-items:center;gap:8px;
+}
+.exp5-block h3 i{color:var(--gold);}
+.exp5-block p.exp5-desc{color:var(--subtext);font-size:.9rem;margin-bottom:16px;max-width:720px;}
+.exp5-tag{
+  display:inline-block;background:var(--navy-deep);color:var(--gold-light);
+  font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  padding:3px 10px;border-radius:20px;margin-left:8px;vertical-align:middle;
+}
+
+/* ============================================================
+   1) CSS GRID LAYOUT — Scholarship Category Grid
+   ============================================================ */
+.grid-categories{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  grid-auto-rows:140px;
+  gap:16px;
+}
+.grid-categories .gcat{
+  border-radius:10px;color:#fff;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:14px;font-weight:700;font-size:.92rem;
+  position:relative;overflow:hidden;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.grid-categories .gcat i{font-size:1.4rem;margin-bottom:6px;}
+.grid-categories .gcat:hover{transform:translateY(-6px);box-shadow:0 14px 26px rgba(0,0,0,.22);}
+.gcat.g1{background:linear-gradient(135deg,#16213E,#2c3d70);grid-column:span 2;grid-row:span 2;}
+.gcat.g2{background:linear-gradient(135deg,#2E7D4F,#4caf7d);}
+.gcat.g3{background:linear-gradient(135deg,#8B4513,#c17a3d);}
+.gcat.g4{background:linear-gradient(135deg,#C0392B,#e0685a);}
+.gcat.g5{background:linear-gradient(135deg,#6a3fa0,#9a6fd6);}
+
+/* ============================================================
+   2) CSS PSEUDO-ELEMENTS
+   ============================================================ */
+.pseudo-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:10px;padding:20px 22px;position:relative;
+}
+/* ::before / ::after — decorative quote marks around a testimonial */
+.pseudo-card.quote-card::before{
+  content:"\201C";
+  font-family:'Fraunces',serif;
+  font-size:3.4rem;color:var(--gold);
+  position:absolute;top:6px;left:14px;line-height:1;opacity:.6;
+}
+.pseudo-card.quote-card::after{
+  content:"\201D";
+  font-family:'Fraunces',serif;
+  font-size:3.4rem;color:var(--gold);
+  position:absolute;bottom:-6px;right:14px;line-height:1;opacity:.6;
+}
+.pseudo-card.quote-card p{padding:20px 26px;font-style:italic;color:var(--text);}
+
+/* ::first-letter / ::first-line */
+.pseudo-card.dropcap p::first-letter{
+  font-family:'Fraunces',serif;
+  font-size:2.8rem;font-weight:900;color:var(--gold);
+  float:left;line-height:1;margin-right:8px;
+}
+.pseudo-card.dropcap p::first-line{
+  font-weight:700;color:var(--navy-deep);
+}
+[data-theme="dark"] .pseudo-card.dropcap p::first-line{color:var(--gold-light);}
+
+/* ::selection — custom text-highlight color */
+.pseudo-card.select-card ::selection{
+  background:var(--gold);
+  color:var(--navy-deep);
+}
+
+.pseudo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+
+/* ============================================================
+   3) CSS TRANSFORMATIONS — translate / rotate / scale / skew
+   ============================================================ */
+.transform-row{display:flex;gap:22px;flex-wrap:wrap;}
+.tf-box{
+  width:120px;height:90px;border-radius:8px;
+  background:linear-gradient(135deg,var(--navy),var(--gold));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:700;text-align:center;
+  box-shadow:0 6px 14px rgba(0,0,0,.15);
+  transition:transform .5s ease;
+}
+.tf-box.tf-translate:hover{transform:translateY(-14px);}
+.tf-box.tf-rotate:hover{transform:rotate(10deg);}
+.tf-box.tf-scale:hover{transform:scale(1.18);}
+.tf-box.tf-skew:hover{transform:skew(-10deg,3deg);}
+
+/* ============================================================
+   4) CSS POSITIONING — relative / absolute / fixed / sticky
+   ============================================================ */
+.position-demo{
+  position:relative;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:10px;padding:60px 24px 24px;min-height:180px;
+  overflow:hidden;
+}
+.pos-relative{
+  position:relative;top:8px;left:8px;
+  display:inline-block;background:var(--navy);color:#fff;
+  padding:6px 12px;border-radius:6px;font-size:.78rem;
+}
+.pos-absolute{
+  position:absolute;top:14px;right:14px;
+  background:var(--red);color:#fff;
+  padding:6px 12px;border-radius:6px;font-size:.78rem;font-weight:700;
+}
+.pos-sticky-demo{
+  position:sticky;top:0;
+  background:var(--gold);color:var(--navy-deep);
+  padding:8px 14px;border-radius:6px;font-size:.78rem;font-weight:700;
+  display:inline-block;margin-top:14px;
+}
+.pos-fixed-badge{
+  position:fixed;left:18px;bottom:18px;z-index:1500;
+  background:var(--green);color:#fff;
+  padding:8px 14px;border-radius:20px;font-size:.75rem;font-weight:700;
+  box-shadow:0 6px 16px rgba(0,0,0,.25);
+}
+
+/* ============================================================
+   5) IMAGE HOVER EFFECTS — zoom / grayscale / blur / overlay
+   ============================================================ */
+.img-hover-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.img-hover-card{
+  position:relative;border-radius:10px;overflow:hidden;height:140px;
+  background:linear-gradient(135deg,#16213E,#2c3d70);
+}
+.img-hover-card .ih-swatch{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-size:.82rem;
+  transition:transform .5s ease, filter .5s ease, opacity .5s ease;
+}
+.ih-zoom .ih-swatch{background:linear-gradient(135deg,#2E7D4F,#4caf7d);}
+.ih-zoom:hover .ih-swatch{transform:scale(1.25);}
+
+.ih-grayscale .ih-swatch{background:linear-gradient(135deg,#8B4513,#c17a3d);filter:grayscale(100%);}
+.ih-grayscale:hover .ih-swatch{filter:grayscale(0%);}
+
+.ih-blur .ih-swatch{background:linear-gradient(135deg,#6a3fa0,#9a6fd6);}
+.ih-blur:hover .ih-swatch{filter:blur(3px);}
+
+.ih-overlay .ih-swatch{background:linear-gradient(135deg,#C0392B,#e0685a);}
+.ih-overlay::after{
+  content:'View Details';
+  position:absolute;inset:0;
+  background:rgba(13,21,48,.75);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.82rem;font-weight:700;
+  opacity:0;transition:opacity .35s ease;
+}
+.ih-overlay:hover::after{opacity:1;}
+
+/* ============================================================
+   6) CSS PROGRESS BAR (pure CSS keyframe animation)
+   ============================================================ */
+.css-progress-wrap{max-width:480px;}
+.css-progress-track{
+  width:100%;height:16px;border-radius:20px;
+  background:var(--border);overflow:hidden;margin-bottom:18px;
+  position:relative;
+}
+.css-progress-track .css-progress-bar{
+  height:100%;border-radius:20px;
+  background:linear-gradient(90deg,var(--green),#6fd39b);
+  animation:cssProgressGrow 2.4s ease forwards;
+  width:0;
+}
+@keyframes cssProgressGrow{ to { width:88%; } }
+.css-progress-track.gold .css-progress-bar{
+  background:linear-gradient(90deg,var(--gold),var(--gold-light));
+  animation-name:cssProgressGrowGold;
+}
+@keyframes cssProgressGrowGold{ to { width:70%; } }
+
+/* ============================================================
+   7) CSS TOOLTIP (pure CSS, no JavaScript)
+   ============================================================ */
+.tooltip-row{display:flex;gap:26px;flex-wrap:wrap;}
+.tooltip{
+  position:relative;
+  display:inline-flex;align-items:center;justify-content:center;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--navy-deep);color:var(--gold-light);
+  font-size:1.1rem;cursor:pointer;
+}
+.tooltip::before{
+  content:attr(data-tooltip);
+  position:absolute;bottom:130%;left:50%;
+  transform:translateX(-50%) translateY(6px);
+  background:var(--navy-deep);color:#fff;
+  padding:6px 12px;border-radius:6px;
+  font-size:.75rem;font-weight:500;white-space:nowrap;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .25s ease, transform .25s ease;
+}
+.tooltip::after{
+  content:'';
+  position:absolute;bottom:118%;left:50%;
+  transform:translateX(-50%);
+  border:6px solid transparent;
+  border-top-color:var(--navy-deep);
+  opacity:0;visibility:hidden;
+  transition:opacity .25s ease;
+}
+.tooltip:hover::before,.tooltip:hover::after{
+  opacity:1;visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* ============================================================
+   RESPONSIVE for Experiment 5
+   ============================================================ */
+@media(max-width:900px){
+  .grid-categories{grid-template-columns:repeat(2,1fr);}
+  .gcat.g1{grid-column:span 2;grid-row:span 1;}
+  .pseudo-grid{grid-template-columns:1fr;}
+  .img-hover-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .grid-categories{grid-template-columns:1fr;}
+  .gcat.g1{grid-column:span 1;}
+  .img-hover-grid{grid-template-columns:1fr;}
+  .pos-fixed-badge{left:10px;bottom:80px;font-size:.68rem;}
+}
