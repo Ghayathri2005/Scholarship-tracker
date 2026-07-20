@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ScholarTrack | Scholarship Discovery & Application Tracker</title>
+<title>ScholarTrack | Scholarship Discovery &amp; Application Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -61,7 +61,6 @@ body{
 h1,h2,h3{
   font-family:'Fraunces',serif;
   color:var(--navy-deep);
-  [data-theme="dark"] &{color:var(--gold-light);}
 }
 [data-theme="dark"] h1,[data-theme="dark"] h2,[data-theme="dark"] h3{
   color:var(--gold-light);
@@ -124,14 +123,12 @@ header.site-header{
 }
 .brand-text p{margin:2px 0 0;font-size:.8rem;color:var(--gold-light);letter-spacing:.5px;}
 
-/* header-right holds student id + controls */
 .header-right{
   display:flex;align-items:center;gap:16px;flex-wrap:wrap;
 }
 .student-id{font-size:.82rem;color:#D8D9E2;}
 .student-id strong{display:block;color:#FFFFFF;font-size:.95rem;}
 
-/* theme + datetime row */
 .header-controls{
   display:flex;flex-direction:column;align-items:flex-end;gap:6px;
 }
@@ -324,7 +321,6 @@ nav.main-nav li:last-child a{color:var(--gold-light);}
 .vm-card h3{font-size:1.05rem;margin-bottom:8px;}
 .vm-card p{margin:0;color:var(--subtext);font-size:.94rem;}
 
-/* scroll-reveal helper */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 
@@ -356,7 +352,6 @@ nav.main-nav li:last-child a{color:var(--gold-light);}
 }
 .stat-card .stat-delta{font-size:.78rem;color:#8FD3A8;margin-top:4px;}
 
-/* progress bars inside stat cards (optional decorative) */
 .stat-progress{
   height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:10px;overflow:hidden;
 }
@@ -375,7 +370,6 @@ nav.main-nav li:last-child a{color:var(--gold-light);}
 .two-col .col h2{font-size:1.5rem;}
 .two-col .col .section-sub{color:var(--subtext);margin-bottom:18px;font-size:.92rem;}
 
-/* animated feature cards */
 .feature-cards{
   display:grid;grid-template-columns:1fr 1fr;gap:14px;
 }
@@ -398,7 +392,6 @@ ul.feature-list li::marker{color:var(--gold);font-size:1.1rem;}
 ol.service-list li::marker{color:var(--navy);font-weight:700;}
 [data-theme="dark"] ol.service-list li::marker{color:var(--gold-light);}
 
-/* service items */
 .service-item{
   display:flex;align-items:flex-start;gap:12px;
   padding:12px 0;border-bottom:1px solid var(--border);
@@ -434,6 +427,112 @@ ol.service-list li::marker{color:var(--navy);font-weight:700;}
 }
 marquee{font-size:.98rem;color:var(--navy-deep);font-weight:500;}
 [data-theme="dark"] marquee{color:#e8d68a;}
+
+/* ============================================================
+   DRAG & DROP + WEB STORAGE (NEW — Experiment 4)
+   ============================================================ */
+.dnd-storage-section{background:var(--bg);}
+.dnd-storage-section h2{margin-bottom:6px;}
+.dnd-storage-section .section-sub{color:var(--subtext);margin-bottom:28px;}
+
+.dnd-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;
+  margin-bottom:44px;
+}
+.dnd-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:24px;
+  box-shadow:0 4px 16px rgba(0,0,0,.05);
+}
+.dnd-card h3{font-size:1.05rem;margin-bottom:6px;}
+.dnd-card p.dnd-hint{color:var(--subtext);font-size:.85rem;margin-bottom:16px;}
+
+.drag-source-row{display:flex;gap:14px;flex-wrap:wrap;}
+.drag-item{
+  width:90px;height:90px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-size:.85rem;text-align:center;
+  cursor:grab;user-select:none;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+  transition:transform var(--transition),box-shadow var(--transition);
+}
+.drag-item:active{cursor:grabbing;}
+.drag-item:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 8px 18px rgba(0,0,0,.22);}
+.drag-item.merit{background:linear-gradient(150deg,var(--navy),#2c3d70);}
+.drag-item.postmatric{background:linear-gradient(150deg,var(--green),#4caf7d);}
+.drag-item.pankh{background:linear-gradient(150deg,#8B4513,#c17a3d);}
+.drag-item.dragging{opacity:.4;}
+
+.drop-target{
+  margin-top:20px;
+  min-height:140px;
+  border:2.5px dashed var(--gold);
+  border-radius:10px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:8px;
+  color:var(--subtext);
+  font-size:.88rem;
+  text-align:center;
+  padding:16px;
+  background:var(--bg);
+  transition:background var(--transition),border-color var(--transition),transform var(--transition);
+}
+.drop-target.dragover{
+  background:rgba(212,165,55,.12);
+  border-color:var(--green);
+  transform:scale(1.01);
+}
+.drop-target .drop-icon{font-size:1.8rem;}
+.dropped-list{list-style:none;width:100%;text-align:left;}
+.dropped-list li{
+  background:var(--surface);border:1px solid var(--border);
+  border-left:4px solid var(--green);
+  border-radius:6px;padding:8px 12px;margin-bottom:8px;
+  font-size:.85rem;color:var(--text);
+  display:flex;justify-content:space-between;align-items:center;
+  animation:slideRight .3s ease;
+}
+.dropped-list li button{
+  background:none;border:none;color:var(--red);cursor:pointer;font-size:.9rem;
+}
+.dnd-clear-btn{
+  margin-top:10px;background:transparent;border:1.5px solid var(--red);color:var(--red);
+  padding:6px 14px;border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;
+  font-family:'Inter',sans-serif;transition:background var(--transition);
+}
+.dnd-clear-btn:hover{background:rgba(192,57,43,.08);}
+
+/* storage cards */
+.storage-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.storage-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:24px;
+  box-shadow:0 4px 16px rgba(0,0,0,.05);
+}
+.storage-card h3{font-size:1.05rem;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+.storage-card p.dnd-hint{color:var(--subtext);font-size:.85rem;margin-bottom:16px;}
+.storage-badge{
+  font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  padding:2px 9px;border-radius:20px;
+}
+.storage-badge.local{background:rgba(46,125,79,.15);color:var(--green);}
+.storage-badge.session{background:rgba(212,165,55,.18);color:#9c7615;}
+[data-theme="dark"] .storage-badge.session{color:var(--gold-light);}
+
+.storage-output{
+  margin-top:14px;background:var(--bg);border:1px solid var(--border);
+  border-radius:8px;padding:12px 14px;font-size:.85rem;min-height:44px;
+  color:var(--text);
+}
+.storage-output .empty{color:var(--subtext);font-style:italic;}
+.storage-btn-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.storage-btn-row .btn{padding:9px 16px;font-size:.82rem;}
+.btn-save{background:var(--green);color:#fff;}
+.btn-save:hover{background:#256a42;transform:translateY(-2px);}
+.btn-retrieve{background:var(--navy);color:#fff;}
+.btn-retrieve:hover{background:var(--navy-deep);transform:translateY(-2px);}
+.btn-clear-storage{background:transparent;color:var(--red);border:1.5px solid var(--red);}
+.btn-clear-storage:hover{background:rgba(192,57,43,.07);}
 
 /* ============================================================
    REGISTRATION FORM
@@ -490,7 +589,6 @@ textarea.f-input{resize:vertical;min-height:80px;}
   font-weight:500;font-size:.9rem;color:var(--text);cursor:pointer;
 }
 
-/* skills checkboxes */
 .checkbox-grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px;
 }
@@ -499,10 +597,8 @@ textarea.f-input{resize:vertical;min-height:80px;}
   font-size:.88rem;color:var(--text);cursor:pointer;
 }
 
-/* preferred time / age row */
 .form-actions{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap;}
 
-/* editable content area */
 .editable-area{
   width:100%;min-height:70px;
   padding:11px 12px;
@@ -580,6 +676,20 @@ table.modules-table td:first-child{font-weight:700;color:var(--navy);}
 }
 
 /* ============================================================
+   HELP SECTION (NEW — Experiment 4)
+   ============================================================ */
+.help-section{background:var(--surface);}
+.help-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:24px;}
+.help-item{
+  background:var(--bg);border:1px solid var(--border);border-radius:8px;
+  padding:18px 20px;transition:transform var(--transition),border-color var(--transition);
+}
+.help-item:hover{transform:translateY(-4px);border-color:var(--gold);}
+.help-item h4{font-size:.92rem;color:var(--navy-deep);margin-bottom:6px;}
+[data-theme="dark"] .help-item h4{color:var(--gold-light);}
+.help-item p{font-size:.85rem;color:var(--subtext);margin:0;}
+
+/* ============================================================
    CONTACT
    ============================================================ */
 .contact-section{background:var(--navy-deep);color:#FFFFFF;}
@@ -602,7 +712,6 @@ table.modules-table td:first-child{font-weight:700;color:var(--navy);}
 }
 .social-links a:hover{background:var(--gold);color:var(--navy-deep);transform:scale(1.05);}
 
-/* spinning icon */
 .spin-icon{
   display:inline-block;
   animation:spin 6s linear infinite;
@@ -692,6 +801,7 @@ footer.site-footer strong{color:var(--gold-light);}
   .quick-links-aside{position:static;}
   .form-row{grid-template-columns:1fr;}
   .checkbox-grid{grid-template-columns:1fr 1fr;}
+  .dnd-grid,.storage-grid,.help-grid{grid-template-columns:1fr;}
 }
 @media(max-width:600px){
   .stats-grid{grid-template-columns:1fr;}
@@ -731,11 +841,12 @@ footer.site-footer strong{color:var(--gold-light);}
 <nav class="main-nav" role="navigation" aria-label="Main navigation">
   <ul>
     <li><a href="#home">Home</a></li>
-    <li><a href="#dashboard">Dashboard</a></li>
-    <li><a href="#services">Features & Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Features</a></li>
+    <li><a href="#storage">Storage</a></li>
     <li><a href="#reports">Registration</a></li>
-    <li><a href="#about">Modules</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#help">Help</a></li>
     <li><a href="#" id="logout-link">Logout</a></li>
   </ul>
 </nav>
@@ -782,16 +893,20 @@ footer.site-footer strong{color:var(--gold-light);}
   <div class="slider-dots" id="slider-dots"></div>
 </section>
 
-<!-- ============ WELCOME SECTION ============ -->
+<main>
+
+<!-- ============ WELCOME / INTRO ============ -->
 <section class="welcome reveal" id="home">
   <span class="eyebrow">Welcome to ScholarTrack</span>
   <h2>Find the right scholarship. Track every application. Never miss a deadline.</h2>
-  <p class="lead">
-    ScholarTrack is a centralized platform that helps students discover scholarships
-    they are eligible for, manage their applications from one dashboard, and track
-    status updates in real time — replacing scattered spreadsheets, bookmark folders,
-    and missed deadlines with a single, organized workflow.
-  </p>
+  <article>
+    <p class="lead">
+      ScholarTrack is a centralized platform that helps students discover scholarships
+      they are eligible for, manage their applications from one dashboard, and track
+      status updates in real time — replacing scattered spreadsheets, bookmark folders,
+      and missed deadlines with a single, organized workflow.
+    </p>
+  </article>
   <div class="vm-grid">
     <div class="vm-card reveal">
       <h3>Our Vision</h3>
@@ -930,8 +1045,71 @@ footer.site-footer strong{color:var(--gold-light);}
   </marquee>
 </div>
 
+<!-- ============ DRAG & DROP + WEB STORAGE (NEW — EXPERIMENT 4) ============ -->
+<section class="dnd-storage-section" id="storage">
+  <h2>Drag &amp; Drop and Web Storage Demo</h2>
+  <p class="section-sub">Drag a scholarship card into the drop zone, then save your details using Local Storage (permanent) or Session Storage (temporary).</p>
+
+  <!-- Drag and Drop -->
+  <div class="dnd-grid">
+    <article class="dnd-card reveal">
+      <h3>🎯 Drag Source</h3>
+      <p class="dnd-hint">Click and drag any scholarship card below.</p>
+      <div class="drag-source-row">
+        <div class="drag-item merit" draggable="true" id="drag1">National<br>Merit</div>
+        <div class="drag-item postmatric" draggable="true" id="drag2">Post-<br>Matric</div>
+        <div class="drag-item pankh" draggable="true" id="drag3">Tata<br>Pankh</div>
+      </div>
+    </article>
+
+    <article class="dnd-card reveal">
+      <h3>📥 Drop Target — My Shortlist</h3>
+      <p class="dnd-hint">Drop scholarship cards here to shortlist them.</p>
+      <div class="drop-target" id="drop-zone">
+        <span class="drop-icon">⬇️</span>
+        <span id="drop-placeholder">Drop a scholarship card here</span>
+        <ul class="dropped-list" id="dropped-list"></ul>
+      </div>
+      <button class="dnd-clear-btn" id="clear-shortlist">Clear Shortlist</button>
+    </article>
+  </div>
+
+  <!-- Web Storage -->
+  <div class="storage-grid">
+    <aside class="storage-card reveal" aria-label="Local Storage demo">
+      <h3>💾 Local Storage <span class="storage-badge local">Permanent</span></h3>
+      <p class="dnd-hint">Saves your name &amp; email in the browser even after you close the tab.</p>
+      <div class="form-row full" style="margin-bottom:10px;">
+        <input class="f-input" type="text" id="local-name" placeholder="Your full name">
+      </div>
+      <div class="form-row full" style="margin-bottom:0;">
+        <input class="f-input" type="email" id="local-email" placeholder="Your email address">
+      </div>
+      <div class="storage-btn-row">
+        <button class="btn btn-save" id="local-save">Save</button>
+        <button class="btn btn-retrieve" id="local-retrieve">Retrieve</button>
+        <button class="btn btn-clear-storage" id="local-clear">Clear</button>
+      </div>
+      <div class="storage-output" id="local-output"><span class="empty">No data retrieved yet. Click "Retrieve".</span></div>
+    </aside>
+
+    <aside class="storage-card reveal" aria-label="Session Storage demo">
+      <h3>🕒 Session Storage <span class="storage-badge session">Temporary</span></h3>
+      <p class="dnd-hint">Saves a note only for this browser tab session — cleared when the tab is closed.</p>
+      <div class="form-row full" style="margin-bottom:0;">
+        <textarea class="f-input" id="session-note" placeholder="Write a temporary note for this session..."></textarea>
+      </div>
+      <div class="storage-btn-row">
+        <button class="btn btn-save" id="session-save">Save</button>
+        <button class="btn btn-retrieve" id="session-retrieve">Retrieve</button>
+        <button class="btn btn-clear-storage" id="session-clear">Clear</button>
+      </div>
+      <div class="storage-output" id="session-output"><span class="empty">No data retrieved yet. Click "Retrieve".</span></div>
+    </aside>
+  </div>
+</section>
+
 <!-- ============ REGISTRATION FORM ============ -->
-<main>
 <section class="form-section" id="reports">
   <h2>Student Registration</h2>
   <p class="section-sub">Create your ScholarTrack account to start discovering scholarships</p>
@@ -1091,14 +1269,40 @@ footer.site-footer strong{color:var(--gold-light);}
       <li><a href="#home">🏠 Home</a></li>
       <li><a href="#dashboard">📊 Dashboard</a></li>
       <li><a href="#services">✨ Features</a></li>
+      <li><a href="#storage">🗂️ Storage Demo</a></li>
       <li><a href="#reports">📝 Register</a></li>
-      <li><a href="#about">📦 Modules</a></li>
       <li><a href="#contact">📞 Contact</a></li>
+      <li><a href="#help">❓ Help</a></li>
     </ul>
     <hr style="border:none;border-top:1px solid var(--border);margin:16px 0;">
     <p style="font-size:.8rem;color:var(--subtext);">ScholarTrack helps students in India discover and apply for scholarships they actually qualify for.</p>
   </aside>
 </section>
+
+<!-- ============ HELP SECTION (NEW — EXPERIMENT 4) ============ -->
+<section class="help-section" id="help">
+  <h2>Help &amp; FAQ</h2>
+  <p class="section-sub">Quick answers about using the Drag &amp; Drop and Storage features</p>
+  <div class="help-grid">
+    <div class="help-item reveal">
+      <h4>How does the Drag &amp; Drop work?</h4>
+      <p>Click and hold any scholarship card in the Drag Source panel, drag it over the dashed Drop Target, and release to add it to your shortlist.</p>
+    </div>
+    <div class="help-item reveal">
+      <h4>What is Local Storage?</h4>
+      <p>Local Storage saves your name and email directly in your browser. The data stays even after you close the tab or restart your computer.</p>
+    </div>
+    <div class="help-item reveal">
+      <h4>What is Session Storage?</h4>
+      <p>Session Storage saves a temporary note only for the current browser tab. Once you close the tab, the data is automatically erased.</p>
+    </div>
+    <div class="help-item reveal">
+      <h4>How do I clear my saved data?</h4>
+      <p>Use the "Clear" button under each storage card, or "Clear Shortlist" under the drop target, to remove that stored data instantly.</p>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <!-- ============ CONTACT ============ -->
@@ -1137,6 +1341,7 @@ footer.site-footer strong{color:var(--gold-light);}
   </div>
   <p>&copy; 2026 <strong>ScholarTrack</strong> — Scholarship Discovery &amp; Application Tracker.</p>
   <p style="margin-top:6px;">Designed by <strong>Ghayathri SV</strong> &middot; Reg. No: 2303717620522016 &middot; Coimbatore Institute of Technology, Coimbatore &middot; Anna University, Chennai</p>
+  <p style="margin-top:6px;">Contact: support@scholartrack.app &middot; +91 98765 43210</p>
 </footer>
 
 <!-- ============ FLOATING BUTTONS ============ -->
@@ -1178,7 +1383,6 @@ function applyTheme(theme){
     themeToggle.innerHTML = '<span id="theme-icon">🌙</span> Dark Mode';
   }
 }
-// load saved preference
 const savedTheme = localStorage.getItem('st-theme') || 'light';
 applyTheme(savedTheme);
 
@@ -1240,7 +1444,6 @@ const counterObs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       e.target.querySelectorAll('.stat-value[data-target]').forEach(animateCounter);
-      // progress fill bars
       e.target.querySelectorAll('.stat-progress-fill').forEach(b=>{
         b.style.width = getComputedStyle(b).getPropertyValue('--pct');
       });
@@ -1275,7 +1478,6 @@ const dotsContainer = document.getElementById('slider-dots');
 let current = 0;
 const total = slides.length;
 
-// create dots
 Array.from({length:total}).forEach((_,i)=>{
   const btn = document.createElement('button');
   btn.className = 'slider-dot' + (i===0?' active':'');
@@ -1294,7 +1496,6 @@ function goTo(n){
 document.getElementById('slider-prev').addEventListener('click',()=>goTo(current-1));
 document.getElementById('slider-next').addEventListener('click',()=>goTo(current+1));
 
-// auto-play
 let autoPlay = setInterval(()=>goTo(current+1), 4000);
 track.parentElement.addEventListener('mouseenter',()=>clearInterval(autoPlay));
 track.parentElement.addEventListener('mouseleave',()=>{ autoPlay = setInterval(()=>goTo(current+1),4000); });
@@ -1336,42 +1537,35 @@ document.getElementById('reg-form').addEventListener('submit', function(e){
   e.preventDefault();
   let valid = true;
 
-  // Full name
   const name = document.getElementById('fullname').value.trim();
   const nameOk = name.length >= 2;
   showError('err-fullname',!nameOk); markField('fullname',nameOk);
   if(!nameOk) valid = false;
 
-  // Email
   const email = document.getElementById('email').value.trim();
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   showError('err-email',!emailOk); markField('email',emailOk);
   if(!emailOk) valid = false;
 
-  // Phone
   const phone = document.getElementById('phone').value.trim();
   const phoneOk = /^[6-9][0-9]{9}$/.test(phone.replace(/\s+/g,''));
   showError('err-phone',!phoneOk); markField('phone',phoneOk);
   if(!phoneOk) valid = false;
 
-  // Password
   const pwd = document.getElementById('password').value;
   const pwdOk = pwd.length >= 8 && /\d/.test(pwd);
   showError('err-password',!pwdOk); markField('password',pwdOk);
   if(!pwdOk) valid = false;
 
-  // Gender
   const genderOk = !!document.querySelector('input[name="gender"]:checked');
   showError('err-gender',!genderOk);
   if(!genderOk) valid = false;
 
-  // DOB
   const dob = document.getElementById('dob').value;
   const dobOk = dob !== '';
   showError('err-dob',!dobOk); markField('dob',dobOk);
   if(!dobOk) valid = false;
 
-  // Age (optional but validate if filled)
   const ageVal = document.getElementById('age').value;
   if(ageVal !== ''){
     const age = parseInt(ageVal,10);
@@ -1380,7 +1574,6 @@ document.getElementById('reg-form').addEventListener('submit', function(e){
     if(!ageOk) valid = false;
   }
 
-  // Address
   const addr = document.getElementById('address').value.trim();
   const addrOk = addr.length >= 5;
   showError('err-address',!addrOk); markField('address',addrOk);
@@ -1393,7 +1586,6 @@ document.getElementById('reg-form').addEventListener('submit', function(e){
   }
 });
 
-// reset clears styles
 document.getElementById('reset-btn').addEventListener('click',()=>{
   setTimeout(()=>{
     document.querySelectorAll('.f-input').forEach(f=>{f.classList.remove('success','error');});
@@ -1401,7 +1593,6 @@ document.getElementById('reset-btn').addEventListener('click',()=>{
   },10);
 });
 
-// cancel clears and scrolls up
 document.getElementById('cancel-btn').addEventListener('click',()=>{
   document.getElementById('reg-form').reset();
   document.querySelectorAll('.f-input').forEach(f=>{f.classList.remove('success','error');});
@@ -1412,10 +1603,11 @@ document.getElementById('cancel-btn').addEventListener('click',()=>{
 /* ---------------------------------------------------------------
    10. TOAST NOTIFICATION
 --------------------------------------------------------------- */
-function showToast(){
+function showToast(msg){
   const toast = document.getElementById('toast');
+  if(msg) toast.textContent = msg;
   toast.classList.add('show');
-  setTimeout(()=>toast.classList.remove('show'),4000);
+  setTimeout(()=>toast.classList.remove('show'),3000);
 }
 
 /* ---------------------------------------------------------------
@@ -1434,8 +1626,142 @@ document.getElementById('logout-link').addEventListener('click', function(e){
   e.preventDefault();
   if(confirm('Are you sure you want to logout?')){
     alert('You have been logged out. Redirecting to login page...');
-    // window.location.href = 'login.html';
   }
+});
+
+/* ---------------------------------------------------------------
+   13. DRAG & DROP  (NEW — EXPERIMENT 4)
+   Implements dragstart, dragover, drop using HTML5 Drag & Drop API
+--------------------------------------------------------------- */
+const dragItems     = document.querySelectorAll('.drag-item');
+const dropZone       = document.getElementById('drop-zone');
+const droppedList     = document.getElementById('dropped-list');
+const dropPlaceholder = document.getElementById('drop-placeholder');
+const clearShortlistBtn = document.getElementById('clear-shortlist');
+
+// dragstart — fired on the item being dragged
+dragItems.forEach(item=>{
+  item.addEventListener('dragstart', (e)=>{
+    e.dataTransfer.setData('text/plain', item.textContent.trim().replace(/\s+/g,' '));
+    item.classList.add('dragging');
+  });
+  item.addEventListener('dragend', ()=>{
+    item.classList.remove('dragging');
+  });
+});
+
+// dragover — must preventDefault to allow a drop
+dropZone.addEventListener('dragover', (e)=>{
+  e.preventDefault();
+  dropZone.classList.add('dragover');
+});
+dropZone.addEventListener('dragleave', ()=>{
+  dropZone.classList.remove('dragover');
+});
+
+// drop — fired when the item is released over the target
+dropZone.addEventListener('drop', (e)=>{
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  const scholarshipName = e.dataTransfer.getData('text/plain');
+  if(!scholarshipName) return;
+
+  dropPlaceholder.style.display = 'none';
+
+  const li = document.createElement('li');
+  li.innerHTML = `<span>🎓 ${scholarshipName}</span>`;
+  const removeBtn = document.createElement('button');
+  removeBtn.setAttribute('aria-label','Remove');
+  removeBtn.textContent = '✕';
+  removeBtn.addEventListener('click', ()=>{
+    li.remove();
+    if(droppedList.children.length === 0) dropPlaceholder.style.display = 'block';
+  });
+  li.appendChild(removeBtn);
+  droppedList.appendChild(li);
+});
+
+clearShortlistBtn.addEventListener('click', ()=>{
+  droppedList.innerHTML = '';
+  dropPlaceholder.style.display = 'block';
+});
+
+/* ---------------------------------------------------------------
+   14. LOCAL STORAGE — permanent save/retrieve/clear
+--------------------------------------------------------------- */
+const localNameInput  = document.getElementById('local-name');
+const localEmailInput = document.getElementById('local-email');
+const localOutput      = document.getElementById('local-output');
+
+document.getElementById('local-save').addEventListener('click', ()=>{
+  const name  = localNameInput.value.trim();
+  const email = localEmailInput.value.trim();
+  if(!name || !email){
+    localOutput.innerHTML = '<span class="empty">Please fill both fields before saving.</span>';
+    return;
+  }
+  localStorage.setItem('st-local-name', name);
+  localStorage.setItem('st-local-email', email);
+  showToast('✅ Saved to Local Storage!');
+  localOutput.innerHTML = `<strong>Saved:</strong> ${name} (${email})`;
+});
+
+document.getElementById('local-retrieve').addEventListener('click', ()=>{
+  const name  = localStorage.getItem('st-local-name');
+  const email = localStorage.getItem('st-local-email');
+  if(name && email){
+    localOutput.innerHTML = `<strong>Name:</strong> ${name}<br><strong>Email:</strong> ${email}`;
+  } else {
+    localOutput.innerHTML = '<span class="empty">No data found in Local Storage.</span>';
+  }
+});
+
+document.getElementById('local-clear').addEventListener('click', ()=>{
+  localStorage.removeItem('st-local-name');
+  localStorage.removeItem('st-local-email');
+  localNameInput.value = '';
+  localEmailInput.value = '';
+  localOutput.innerHTML = '<span class="empty">Local Storage cleared.</span>';
+  showToast('🗑️ Local Storage cleared');
+});
+
+/* ---------------------------------------------------------------
+   15. SESSION STORAGE — temporary save/retrieve/clear
+--------------------------------------------------------------- */
+const sessionNoteInput = document.getElementById('session-note');
+const sessionOutput      = document.getElementById('session-output');
+
+document.getElementById('session-save').addEventListener('click', ()=>{
+  const note = sessionNoteInput.value.trim();
+  if(!note){
+    sessionOutput.innerHTML = '<span class="empty">Please write a note before saving.</span>';
+    return;
+  }
+  sessionStorage.setItem('st-session-note', note);
+  showToast('✅ Saved to Session Storage!');
+  sessionOutput.innerHTML = `<strong>Saved note:</strong> ${note}`;
+});
+
+document.getElementById('session-retrieve').addEventListener('click', ()=>{
+  const note = sessionStorage.getItem('st-session-note');
+  sessionOutput.innerHTML = note
+    ? `<strong>Note:</strong> ${note}`
+    : '<span class="empty">No data found in Session Storage.</span>';
+});
+
+document.getElementById('session-clear').addEventListener('click', ()=>{
+  sessionStorage.removeItem('st-session-note');
+  sessionNoteInput.value = '';
+  sessionOutput.innerHTML = '<span class="empty">Session Storage cleared.</span>';
+  showToast('🗑️ Session Storage cleared');
+});
+
+/* Load any previously saved local storage values into the output on page load */
+window.addEventListener('DOMContentLoaded', ()=>{
+  const savedName  = localStorage.getItem('st-local-name');
+  const savedEmail = localStorage.getItem('st-local-email');
+  if(savedName)  localNameInput.value  = savedName;
+  if(savedEmail) localEmailInput.value = savedEmail;
 });
 </script>
 
