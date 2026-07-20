@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ScholarTrack | Scholarship Discovery &amp; Application Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="stylesheet" href="experiment5-external.css">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- EXPERIMENT 5: External stylesheet link (advanced CSS demo) -->
+<link rel="stylesheet" href="experiment5-external.css">
+<!-- EXPERIMENT 5: Font Awesome icons (CSS Icons requirement) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 /* ============================================================
    DESIGN TOKENS — light + dark
@@ -430,7 +433,7 @@ marquee{font-size:.98rem;color:var(--navy-deep);font-weight:500;}
 [data-theme="dark"] marquee{color:#e8d68a;}
 
 /* ============================================================
-   DRAG & DROP + WEB STORAGE (NEW — Experiment 4)
+   DRAG & DROP + WEB STORAGE (Experiment 4)
    ============================================================ */
 .dnd-storage-section{background:var(--bg);}
 .dnd-storage-section h2{margin-bottom:6px;}
@@ -677,7 +680,7 @@ table.modules-table td:first-child{font-weight:700;color:var(--navy);}
 }
 
 /* ============================================================
-   HELP SECTION (NEW — Experiment 4)
+   HELP SECTION (Experiment 4)
    ============================================================ */
 .help-section{background:var(--surface);}
 .help-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:24px;}
@@ -791,6 +794,20 @@ footer.site-footer strong{color:var(--gold-light);}
 .quick-links-aside ul li a:hover{color:var(--gold);}
 
 /* ============================================================
+   EXPERIMENT 5 — INTERNAL CSS DEMO (lives only in this <style> tag,
+   not in the external file, to visibly prove it's "Internal CSS")
+   ============================================================ */
+.internal-css-demo{padding:6px 0;}
+.internal-badge{
+  display:inline-block;
+  background:linear-gradient(120deg,var(--gold),var(--green));
+  color:#fff;font-weight:700;font-size:.85rem;
+  padding:10px 18px;border-radius:8px;
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+  animation:pulse 2.6s ease infinite;
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media(max-width:900px){
@@ -844,6 +861,7 @@ footer.site-footer strong{color:var(--gold-light);}
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#services">Features</a></li>
+    <li><a href="#advanced-css">Advanced CSS</a></li>
     <li><a href="#storage">Storage</a></li>
     <li><a href="#reports">Registration</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -1034,6 +1052,112 @@ footer.site-footer strong{color:var(--gold-light);}
   </div>
 </section>
 
+<!-- ============ EXPERIMENT 5: ADVANCED CSS SHOWCASE ============ -->
+<section class="exp5-section" id="advanced-css">
+  <h2>Experiment 5 — Advanced CSS Showcase</h2>
+  <p class="section-sub">Same page, three ways of writing CSS: <strong>Inline</strong> (style="" on an element), <strong>Internal</strong> (the &lt;style&gt; block in this page's &lt;head&gt;), and <strong>External</strong> (rules loaded from <code>experiment5-external.css</code>).</p>
+
+  <!-- INLINE CSS DEMO -->
+  <div class="exp5-block reveal">
+    <h3><i class="fa-solid fa-code"></i> Inline CSS <span class="exp5-tag">style="..." attribute</span></h3>
+    <p class="exp5-desc">Styles written directly on the element using the <code>style</code> attribute. Good for one-off tweaks, but not reusable.</p>
+    <p style="background:#0D1530; color:#F0D78C; padding:14px 18px; border-radius:8px; font-weight:700; text-align:center; letter-spacing:.5px;">
+      🎓 This banner is styled entirely with an <code>style="..."</code> inline attribute — background, color, padding, border-radius and text-align are all written right here on the &lt;p&gt; tag.
+    </p>
+  </div>
+
+  <!-- INTERNAL CSS DEMO -->
+  <div class="exp5-block reveal">
+    <h3><i class="fa-solid fa-file-code"></i> Internal CSS <span class="exp5-tag">&lt;style&gt; in &lt;head&gt;</span></h3>
+    <p class="exp5-desc">All the classes styling this entire ScholarTrack page (cards, nav, buttons, tables, etc.) are Internal CSS — written once inside the &lt;style&gt; tag in the &lt;head&gt; and reused via class names across the page.</p>
+    <div class="internal-css-demo">
+      <span class="internal-badge">Internal CSS badge — styled by a rule inside &lt;style&gt;</span>
+    </div>
+  </div>
+
+  <!-- EXTERNAL CSS: CSS GRID -->
+  <div class="exp5-block reveal">
+    <h3><i class="fa-solid fa-table-cells"></i> External CSS — CSS Grid Layout <span class="exp5-tag">experiment5-external.css</span></h3>
+    <p class="exp5-desc">Scholarship categories arranged with <code>display:grid</code>, using <code>grid-template-columns</code> and <code>grid-column/row span</code> for an asymmetric layout.</p>
+    <div class="grid-categories">
+      <div class="gcat g1"><i class="fa-solid fa-medal"></i>Merit-Based Scholarships</div>
+      <div class="gcat g2"><i class="fa-solid fa-hand-holding-heart"></i>Need-Based Aid</div>
+      <div class="gcat g3"><i class="fa-solid fa-landmark"></i>Government Schemes</div>
+      <div class="gcat g4"><i class="fa-solid fa-briefcase"></i>Private Trust Grants</div>
+      <div class="gcat g5"><i class="fa-solid fa-globe"></i>International Exchange</div>
+    </div>
+  </div>
+
+  <!-- EXTERNAL CSS: PSEUDO-ELEMENTS -->
+  <div class="exp5-block reveal">
+    <h3><i class="fa-solid fa-quote-right"></i> CSS Pseudo-Elements <span class="exp5-tag">::before ::after ::first-letter ::first-line ::selection</span></h3>
+    <p class="exp5-desc">Try selecting (highlighting) the text in the third card to see the custom <code>::selection</code> color.</p>
+    <div class="pseudo-grid">
+      <div class="pseudo-card quote-card">
+        <p>ScholarTrack helped me find and apply for three scholarships I never knew existed.</p>
+      </div>
+      <div class="pseudo-card dropcap">
+        <p>Every application filed through ScholarTrack is verified for eligibility before submission, saving students time and avoiding rejected forms.</p>
+      </div>
+      <div class="pseudo-card select-card">
+        <p>Select this sentence with your mouse to see a custom gold ::selection highlight instead of the browser default.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXTERNAL CSS: TRANSFORMATIONS -->
+  <div class="exp5-block reveal">
+    <h3><i class="fa-solid fa-arrows-spin"></i> CSS Transformations <span class="exp5-tag">translate() rotate() scale() skew()</span></h3>
+    <p class="exp5-desc">Hover each box to see the transform applied.</p>
+    <div class="transform-row">
+      <div class="tf-box tf-translate">translate()</div>
+      <div class="tf-box tf-rotate">rotate()</div>
+      <div class="tf-box tf-scale">scale()</div>
+      <div class="tf-box tf-skew">skew()</div>
+    </div>
+  </div>
+
+  <!-- EXTERNAL CSS: POSITIONING -->
+  <div class="exp5-block reveal">
+    <h3><i class="fa-solid fa-crosshairs"></i> CSS Positioning <span class="exp5-tag">relative absolute fixed sticky</span></h3>
+    <p class="exp5-desc">A green "Experiment 5" badge fixed to the bottom-left of the viewport demonstrates <code>position:fixed</code>. The box below shows relative, absolute and sticky positioning together.</p>
+    <div class="position-demo">
+      <span class="pos-absolute">absolute (top-right)</span>
+      <span class="pos-relative">relative (nudged 8px)</span><br>
+      <span class="pos-sticky-demo">sticky (sticks to top of this box on scroll)</span>
+    </div>
+    <span class="pos-fixed-badge"><i class="fa-solid fa-thumbtack"></i> position: fixed</span>
+  </div>
+
+  <!-- EXTERNAL CSS: IMAGE/COLOR HOVER EFFECTS -->
+  <div class="exp5-block reveal">
+    <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Hover Effects <span class="exp5-tag">zoom · grayscale · blur · overlay</span></h3>
+    <p class="exp5-desc">Pure-CSS hover transitions — no JavaScript involved.</p>
+    <div class="img-hover-grid">
+      <div class="img-hover-card ih-zoom"><div class="ih-swatch">Zoom on Hover</div></div>
+      <div class="img-hover-card ih-grayscale"><div class="ih-swatch">Grayscale → Color</div></div>
+      <div class="img-hover-card ih-blur"><div class="ih-swatch">Blur on Hover</div></div>
+      <div class="img-hover-card ih-overlay"><div class="ih-swatch">Overlay Reveal</div></div>
+    </div>
+  </div>
+
+  <!-- EXTERNAL CSS: PROGRESS BAR + TOOLTIP -->
+  <div class="exp5-block reveal">
+    <h3><i class="fa-solid fa-spinner"></i> CSS Progress Bar &amp; Tooltip <span class="exp5-tag">pure CSS, no JS</span></h3>
+    <p class="exp5-desc">Progress bars animate to their target width using a CSS <code>@keyframes</code> rule. Hover the icons below to see CSS-only tooltips (built with <code>::before</code>/<code>::after</code>).</p>
+    <div class="css-progress-wrap">
+      <div class="css-progress-track"><div class="css-progress-bar"></div></div>
+      <div class="css-progress-track gold"><div class="css-progress-bar"></div></div>
+    </div>
+    <div class="tooltip-row">
+      <span class="tooltip" data-tooltip="Application deadline reminders"><i class="fa-solid fa-bell"></i></span>
+      <span class="tooltip" data-tooltip="Upload verified documents"><i class="fa-solid fa-file-shield"></i></span>
+      <span class="tooltip" data-tooltip="Track eligibility instantly"><i class="fa-solid fa-circle-check"></i></span>
+      <span class="tooltip" data-tooltip="Chat with support"><i class="fa-solid fa-headset"></i></span>
+    </div>
+  </div>
+</section>
+
 <!-- ============ LATEST UPDATES ============ -->
 <div class="updates-section">
   <span class="updates-label">Latest Updates</span>
@@ -1046,7 +1170,7 @@ footer.site-footer strong{color:var(--gold-light);}
   </marquee>
 </div>
 
-<!-- ============ DRAG & DROP + WEB STORAGE (NEW — EXPERIMENT 4) ============ -->
+<!-- ============ DRAG & DROP + WEB STORAGE (EXPERIMENT 4) ============ -->
 <section class="dnd-storage-section" id="storage">
   <h2>Drag &amp; Drop and Web Storage Demo</h2>
   <p class="section-sub">Drag a scholarship card into the drop zone, then save your details using Local Storage (permanent) or Session Storage (temporary).</p>
@@ -1270,6 +1394,7 @@ footer.site-footer strong{color:var(--gold-light);}
       <li><a href="#home">🏠 Home</a></li>
       <li><a href="#dashboard">📊 Dashboard</a></li>
       <li><a href="#services">✨ Features</a></li>
+      <li><a href="#advanced-css">🎨 Advanced CSS</a></li>
       <li><a href="#storage">🗂️ Storage Demo</a></li>
       <li><a href="#reports">📝 Register</a></li>
       <li><a href="#contact">📞 Contact</a></li>
@@ -1280,7 +1405,7 @@ footer.site-footer strong{color:var(--gold-light);}
   </aside>
 </section>
 
-<!-- ============ HELP SECTION (NEW — EXPERIMENT 4) ============ -->
+<!-- ============ HELP SECTION (EXPERIMENT 4) ============ -->
 <section class="help-section" id="help">
   <h2>Help &amp; FAQ</h2>
   <p class="section-sub">Quick answers about using the Drag &amp; Drop and Storage features</p>
@@ -1631,7 +1756,7 @@ document.getElementById('logout-link').addEventListener('click', function(e){
 });
 
 /* ---------------------------------------------------------------
-   13. DRAG & DROP  (NEW — EXPERIMENT 4)
+   13. DRAG & DROP  (EXPERIMENT 4)
    Implements dragstart, dragover, drop using HTML5 Drag & Drop API
 --------------------------------------------------------------- */
 const dragItems     = document.querySelectorAll('.drag-item');
