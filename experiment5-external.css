@@ -1,152 +1,20 @@
 /* ============================================================
-   EXPERIMENT 5 — EXTERNAL STYLESHEET (scholartrack-external.css)
-   Linked via: <link rel="stylesheet" href="scholartrack-external.css">
-   Demonstrates: pseudo-elements, transformations, positioning,
-   progress bars, CSS-only tooltips, image hover effects.
-   All rules are scoped under .exp5-page so they never affect
-   the Experiment 4 markup that appears earlier in the document.
+   scholartrack-external.css
+   EXTERNAL STYLESHEET — linked from <head> via:
+   <link rel="stylesheet" href="scholartrack-external.css">
+   These rules apply to the SAME elements already on the page —
+   this file just proves the "external stylesheet" technique.
    ============================================================ */
 
-/* ---------- PSEUDO-ELEMENTS ---------- */
-.exp5-page .s5-banner h2::first-letter{
-  font-size:1.6em;
-  color:var(--s5-gold);
-  font-weight:900;
-}
-.exp5-page .s5-banner p.s5-lead::first-line{
-  font-weight:600;
-  color:var(--s5-gold-light);
-}
-.exp5-page .s5-section-title::before{
-  content:"🎓 ";
-  margin-right:6px;
-}
-.exp5-page .s5-section-title::after{
-  content:"";
-  display:block;
-  width:60px;height:3px;
-  background:var(--s5-gold);
-  margin-top:8px;
-  border-radius:3px;
-}
-.exp5-page ::selection{
-  background:var(--s5-gold);
-  color:var(--s5-navy-deep);
-}
+/* extra hover polish on the vision/mission cards */
+.vm-card{transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;}
+.vm-card:hover{transform:translateY(-4px) scale(1.01);border-left-color:var(--green);}
 
-/* ---------- CSS TRANSFORMATIONS ---------- */
-.exp5-page .s5-mentor-card{
-  transition:transform .35s ease, box-shadow .35s ease;
-}
-.exp5-page .s5-mentor-card:hover{
-  transform:translateY(-8px) rotate(-1deg) scale(1.04);
-  box-shadow:0 16px 30px rgba(0,0,0,.25);
-}
-.exp5-page .s5-feature-card .s5-fc-icon{
-  transition:transform .3s ease;
-  display:inline-block;
-}
-.exp5-page .s5-feature-card:hover .s5-fc-icon{
-  transform:scale(1.25) rotate(8deg);
-}
-.exp5-page .s5-gallery-item{
-  transition:transform .4s ease;
-}
-.exp5-page .s5-gallery-item:hover{
-  transform:skew(-2deg) scale(1.05);
-}
+/* subtle shift on the module table's first column on hover */
+table.modules-table tr:hover td:first-child{transform:translateX(4px);display:inline-block;}
 
-/* ---------- IMAGE / VISUAL HOVER EFFECTS ---------- */
-.exp5-page .s5-gallery-item{
-  position:relative;
-  overflow:hidden;
-  border-radius:10px;
-  cursor:pointer;
-}
-.exp5-page .s5-gallery-item .s5-gallery-img{
-  filter:grayscale(35%);
-  transition:filter .4s ease, transform .5s ease;
-}
-.exp5-page .s5-gallery-item:hover .s5-gallery-img{
-  filter:grayscale(0%) brightness(1.05);
-  transform:scale(1.15);
-}
-.exp5-page .s5-gallery-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top, rgba(13,21,48,.85), transparent 60%);
-  display:flex;align-items:flex-end;
-  padding:12px;
-  opacity:0;
-  transition:opacity .35s ease;
-}
-.exp5-page .s5-gallery-item:hover .s5-gallery-overlay{opacity:1;}
+/* contact cards: rotate + scale together (external-file transform demo) */
+.contact-card:hover{transform:translateY(-5px) scale(1.02) rotate(0.5deg);}
 
-/* ---------- CSS POSITIONING DEMO ---------- */
-.exp5-page .s5-banner{position:relative;}
-.exp5-page .s5-promo-badge{
-  position:absolute;
-  top:18px; right:6%;
-  background:var(--s5-gold);
-  color:var(--s5-navy-deep);
-  padding:8px 16px;
-  border-radius:30px;
-  font-weight:700;
-  font-size:.8rem;
-  box-shadow:0 6px 16px rgba(0,0,0,.25);
-  animation:s5-bounce 2.2s ease infinite;
-}
-.exp5-page .s5-nav{position:sticky; top:0; z-index:900;}
-.exp5-page #s5-back-to-top{position:fixed;}
-.exp5-page .s5-mentor-badge{position:absolute; top:10px; left:10px;}
-.exp5-page .s5-mentor-card{position:relative;}
-
-/* ---------- CSS PROGRESS BARS ---------- */
-.exp5-page .s5-progress-track{
-  height:12px;
-  background:var(--s5-line);
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
-}
-.exp5-page .s5-progress-fill{
-  height:100%;
-  border-radius:20px;
-  background:linear-gradient(90deg, var(--s5-gold), var(--s5-gold-light));
-  width:0%;
-  animation:s5-fillbar 1.8s ease forwards;
-  animation-delay:.3s;
-}
-@keyframes s5-fillbar{
-  from{width:0%;}
-  to{width:var(--s5-target, 70%);}
-}
-
-/* ---------- CSS-ONLY TOOLTIPS ---------- */
-.exp5-page [data-tooltip]{position:relative;}
-.exp5-page [data-tooltip]::after{
-  content:attr(data-tooltip);
-  position:absolute;
-  bottom:120%;
-  left:50%;
-  transform:translateX(-50%) translateY(6px);
-  background:var(--s5-navy-deep);
-  color:#fff;
-  padding:6px 10px;
-  border-radius:6px;
-  font-size:.72rem;
-  white-space:nowrap;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .25s ease, transform .25s ease;
-  z-index:50;
-}
-.exp5-page [data-tooltip]:hover::after{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
-}
-
-/* shared bounce keyframe (external file) */
-@keyframes s5-bounce{
-  0%,20%,53%,100%{transform:translateY(0);}
-  40%{transform:translateY(-8px);}
-}
+/* service number badges get a little "pop" from the external sheet */
+.service-item:hover .service-num{transform:scale(1.12) rotate(-6deg);transition:transform .3s ease;}
